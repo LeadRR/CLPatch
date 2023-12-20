@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "MlumUcI1hsef2/NI7Map2LcstuFX/JTOjOkU0Cs+JxK2dqjWLd3CbOY1as2FxOaIlkcEHTtdIABwr1Wr57ry3Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\edu\\source\\repos\\CLPatch\\CLPatch\\CLPatch.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edu\\.nuget\\packages\\anglesharp\\1.0.7\\anglesharp.1.0.7.nupkg.sha512",
+    "C:\\Users\\edu\\.nuget\\packages\\system.diagnostics.eventlog\\7.0.0\\system.diagnostics.eventlog.7.0.0.nupkg.sha512",
+    "C:\\Users\\edu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\edu\\.nuget\\packages\\system.serviceprocess.servicecontroller\\7.0.1\\system.serviceprocess.servicecontroller.7.0.1.nupkg.sha512",
+    "C:\\Users\\edu\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
