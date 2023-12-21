@@ -10,7 +10,6 @@ namespace CLPatch
   using System.IO.Compression;
   using System.Text;
   using System.Text.RegularExpressions;
-  using AngleSharp.Html.Parser;
 
   public static class PrerequisitesCheck
   {
@@ -114,7 +113,7 @@ namespace CLPatch
     private static bool OpatchVersionCheck(string outputStr)
     {
       string currentOpatchVersion = GetCurrentOpatchVersion(outputStr);
-      string? requiredOpatchVersion = ParseHtml();
+      string? requiredOpatchVersion = SearchHtml();
 
       if (requiredOpatchVersion == null) return false;
 
@@ -224,37 +223,27 @@ namespace CLPatch
     }
 
     /// <summary>
-    /// Parses a HTML file to extract the OPatch version.
+    /// Searches a HTML file to extract the OPatch version.
     /// </summary>
     /// <returns>
     /// The OPatch version extracted from the HTML content, or null if the version could not be retrieved.
     /// </returns>
-    private static string? ParseHtml()
+    private static string? SearchHtml()
     {
-
-      string[] files = Directory.GetFiles(GlobalVariables.DestinationPath, "README.html", SearchOption.AllDirectories);
-      string filePath = (files.Length > 0 ? files[0] : null) ?? "";
+      string filePath = Directory.EnumerateFiles(GlobalVariables.DestinationPath, "README.html", SearchOption.AllDirectories).FirstOrDefault() ?? "";
       string? opatchVersion = null;
 
       try
       {
         string htmlContent = File.ReadAllText(filePath);
 
-        var parser = new HtmlParser();
+        const string Pattern = @"OPatch utility version\s*(\d+(?:\.\d+)*)";
 
-        var document = parser.ParseDocument(htmlContent);
+        var match = Regex.Match(htmlContent, Pattern);
 
-        if (document.Body != null)
+        if (match.Success)
         {
-          string textContent = document.Body.TextContent;
-          const string Pattern = @"OPatch utility version\s*(\d+(?:\.\d+)*)";
-
-          var match = Regex.Match(textContent, Pattern);
-
-          if (match.Success)
-          {
-            opatchVersion = match.Groups[1].Value;
-          }
+          opatchVersion = match.Groups[1].Value;
         }
       }
       catch (Exception e)
